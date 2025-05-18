@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frontend</title>
+</head>
+<body>
+  <h1>Frontend funcionando</h1>
+  <button onclick="cargarDatos()">Cargar usuarios</button> 
+  <ul id="usuarios"></ul>
+
+  <script>
+    async function cargarDatos() {
+      const res = await fetch('http://localhost:5000/usuarios');
+      const data = await res.json();
+      const lista = document.getElementById("usuarios");
+      lista.innerHTML = "";
+      data.forEach(u => {
+        const li = document.createElement("li");
+        li.textContent = u.nombre;
+        lista.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
